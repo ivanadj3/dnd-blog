@@ -82,6 +82,7 @@ export default function DashProfile(){
     };
 
    const handleSubmit = async (e) => {
+    console.log('currentUser:', currentUser);
     e.preventDefault();
     setUpdateUserError(null);
     setUpdateUserSuccess(null);
@@ -93,7 +94,7 @@ export default function DashProfile(){
       setUpdateUserError('Please wait for image to upload');
       return;
     }
-    try {
+ try {
       dispatch(updateStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: 'PUT',
