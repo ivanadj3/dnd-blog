@@ -8,7 +8,7 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage';
 import { app } from '../firebase';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -24,27 +24,6 @@ export default function UpdatePost() {
 
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
-
-    useEffect(() => {
-        try{
-            const fetchPost = async () => {
-            const res = await fetch(`/api/post/getposts?postId=${postId}`);
-            const data = await res.json();
-            if (!res.ok) {
-                console.log(data.message);
-                setPublishError(data.message);
-                return;
-            }
-            if(res.ok) {
-                setPublishError(null);
-                setFormData(data.posts[0]);
-            }
-            };
-            fetchPost();
-        } catch (error) {
-            console.log(error.message);
-        }
-    }, [postId]);
 
   const handleUpdloadImage = async () => {
     try {
@@ -85,13 +64,19 @@ export default function UpdatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/post/updatepost/${formData._id}/${updateCurrentUser._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/post/updatepost/${
+          formData._id
+        }/${currentUser._id}`,
+        {
+          method: 'PUT',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       const data = await res.json();
       if (!res.ok) {
         setPublishError(data.message);
@@ -120,13 +105,11 @@ export default function UpdatePost() {
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
-            value={formData.title}
           />
           <Select
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
-            value={formData.category}
           >
             <option value='uncategorized'>Select a category</option>
             <option value='buildtips'>Build Tips</option>
@@ -171,7 +154,6 @@ export default function UpdatePost() {
         )}
         <ReactQuill
           theme='snow'
-          value={formData.content}
           placeholder='Write something...'
           className='h-72 mb-12'
           required
