@@ -61,10 +61,9 @@ export default function DashUsers() {
   const handleDeleteUser = async () => {
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/user/delete/${userIdToDelete}`,
+        `{/api/user/delete/${userIdToDelete}`,
         {
           method: 'DELETE',
-          credentials: 'include',
         }
       );
       const data = await res.json();
