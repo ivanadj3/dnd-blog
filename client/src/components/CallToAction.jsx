@@ -5,10 +5,10 @@ export default function CallToAction() {
         <div className="flex flex-col sm:flex-row p-3 border border-teal-500 justify-center items-center rounded-tl-3xl rounded-br-3xl text-center">
             <div className="flex-1 justify-center flex flex-col">
                 <h2 className='text-2xl'>
-                    Wanto to learn more about Dungeons and Dragons? 
+                    Wanto to learn more about Dungeons & Dragons? 
                 </h2>
                 <p className='text-gray-500 my-2'>
-                    Checkout these resources!
+                    Take a look into these resources!
                 </p>
                 <Button gradientDuoTone='tealToLime'className='rounded-tl-xl rounded-bl-none'><a href="https://dnd5e.wikidot.com" target='_blank' rel='noopener noreferrer'>Learn more</a> 
                     
