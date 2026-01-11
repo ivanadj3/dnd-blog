@@ -19,8 +19,7 @@ export default function Home() {
       <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
         <h1 className = 'text-3xl font-bold lg:text-6xl'>Welcome, adventurer!</h1>
         <p className='text-gray-500 text-xs sm:text-sm'>This is a gathering place for storytellers, scholars, and wandering heroes alike. Within these digital halls, users craft posts like spells from ink and imagination, share tales of daring quests, clever rules, and world-building wonders, and leave comments as whispers of wisdom or friendly banter by the tavern fire. Whether you come to chronicle your own adventures or to learn from the legends of others, this realm is built for collaboration, creativity, and a touch of magic.</p>
-        <Link to='/search' className='text-xs sm:text-sm text-teal-500 font-bold hover:underline'>View all posts</Link>
-<Link
+         <Link
           to='/search'
           className='text-xs sm:text-sm text-teal-500 font-bold hover:underline'
         >
